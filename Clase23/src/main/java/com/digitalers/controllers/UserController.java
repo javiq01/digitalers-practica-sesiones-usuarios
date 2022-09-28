@@ -56,7 +56,7 @@ public class UserController extends HttpServlet {
 		
 		User userUpdate = (User) request.getSession().getAttribute("userEdit");
 		Boolean editando = (Boolean) request.getSession().getAttribute("editando");
-		
+
 		if (email != null && key1 != null && key2 != null && active != null) {
 			
 			
@@ -65,7 +65,7 @@ public class UserController extends HttpServlet {
 				request.setAttribute("messageEnum", MessageEnum.INCORRECT_KEYS);
 				path = "usuario.jsp";
 				
-			} else if (editando != null && editando) {
+			} else if (editando != null && userUpdate != null && editando) {
 				
 				if (!update(userUpdate.getId(), email, key1, active)) {
 					request.setAttribute("messageEnum", MessageEnum.INCORRECT_EMAIL);
@@ -89,6 +89,7 @@ public class UserController extends HttpServlet {
 		for (User user : LoginController.users) {
 			
 			if (user.getId() != id && user.getEmail().equalsIgnoreCase(email)) {
+				// no permite un correo ya existente a no ser que sea el suyo
 				return false;
 			} else if (user.getId() == id) {
 				user.setEmail(email);

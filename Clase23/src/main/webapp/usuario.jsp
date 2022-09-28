@@ -67,7 +67,7 @@
 			}
 		%>
 		
-			<input type="hidden" name= "id"value = "">
+			<!-- <input type="hidden" name= "id"value = ""> -->
 		
 			<label for="email">Correo:</label> 
 			<input type="email" id="email" name="email" required placeholder="tuusuario@dominio.ext" value="<%=editando? userAux.getEmail(): ""%>"> 
